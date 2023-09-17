@@ -22,7 +22,7 @@ jobs:
         go-version: '1.20'
 
     - name: Build
-      run: go build -v ./vagrant/app_consumer/main.go
+      run: go build -v ./vagrant/app_consumer
 
     - name: Test
-      run: go test -v ./vagrant/app_producer/main.go
+      run: go test -v ./vagrant/app_producer
