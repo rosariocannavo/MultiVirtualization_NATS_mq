@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+
+  nats:
+    image: nats:latest
+    ports:
+      - "4222:4222"  
+    networks:
+      - nats_network
+      
+  #two consumer from the same dockerfile to parallelize the reading
+  consumer1:
+    build:
+      context: ../app_consumer
+      dockerfile: Dockerfile
+    networks:
+      - nats_network
+    restart: always
+
+
+  consumer2:
+    build:
+      context: ../app_consumer
+      dockerfile: Dockerfile
+    networks:
+      - nats_network
+    restart: always
+
+
+  producer:
+    build:
+      context: ../app_producer
+      dockerfile: Dockerfile
+    ports:                        
+      - 8080:8080  #forward port from container to VM 
+    networks:
+      - nats_network
+    restart: always
+
+
+networks:
+  nats_network:
+    driver: bridge
