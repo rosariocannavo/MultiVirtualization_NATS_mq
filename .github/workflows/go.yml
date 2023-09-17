@@ -22,6 +22,6 @@ jobs:
         go-version: '1.20'
 
     - name: Build
-      run: go build -v MultiVirtualization_NATSmq/vagrant/app_consumer
+      run: go build -v MultiVirtualization_NATSmq/vagrant/go_producer
 
    
